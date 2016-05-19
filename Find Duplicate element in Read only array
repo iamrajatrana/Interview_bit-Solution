@@ -1,0 +1,34 @@
+// Given a read only array of n + 1 integers between 1 and n, find one number that repeats in linear time using less then O(n) space and traversing the stream sequentially O(1) times.
+
+// Sample Input:
+
+// [3 4 1 4 1]
+
+// Sample Output:
+
+// 1
+
+// If there are multiple possible answers ( like in the sample case above ), output any one.
+
+python Code:
+
+  def repeatedNumber(self, A):
+        dict = {}
+        for a in A :
+           dict[a] = dict.get(a, 0) + 1
+        for key in dict.keys() :
+            if dict[key] > 1:
+              return key
+              
+              
+C code:
+
+  int repeatedNumber(const int* A, int n1) {
+    long long x=0;
+    int i;
+    for(i=1;i<=n1-1;i++)
+    x=x^i;
+    for(i=0;i<n1;i++)
+    x=x^A[i];
+    return x;
+}
