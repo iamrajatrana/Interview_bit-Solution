@@ -1,0 +1,46 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ 
+ NON- recursive Method:
+ 
+vector<int> Solution::preorderTraversal(TreeNode* A) {
+    stack<TreeNode*> st;
+    vector<int> v;
+    if(A == NULL)
+    return v;
+    st.push(A);
+     TreeNode* head=A;
+     while(!st.empty())
+     {
+         TreeNode* top = st.top();
+            v.push_back(top->val);
+            st.pop();
+            if (top->right!=NULL){st.push(top->right);}
+            if (top->left!=NULL){st.push(top->left);}
+     }
+        return v;  
+}
+
+
+Recursive Method:
+
+void pre_recur(TreeNode* root, vector<int> &res){
+        if (!root){         //if null node, return
+            return;
+        }else{
+            res.push_back(root->val); // traverse root child
+            if (root->left){    
+                pre_recur(root->left,res); //traverse left child
+            }
+            if (root->right){
+                pre_recur(root->right,res); //traverse right child
+            }
+        }
+    }
