@@ -1,0 +1,40 @@
+* struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ 
+ListNode* Solution::addTwoNumbers(ListNode* A, ListNode* B) {
+   
+   ListNode* result = new ListNode(0);
+   ListNode* head = result;
+   int carry = 0;
+   
+   while (A && B){
+            result->next=new ListNode((A->val+B->val+carry)%10);
+            carry = (A->val+B->val+carry)/10;
+            A=A->next;
+            B=B->next;
+            result=result->next;
+        }
+         
+        while (A){
+            result->next=new ListNode((A->val+carry)%10);
+            carry = (A->val+carry)/10;
+            A=A->next;
+            result=result->next;
+        }
+         
+        while (B){
+            result->next=new ListNode((B->val+carry)%10);
+            carry = (B->val+carry)/10;
+            B=B->next;
+            result=result->next;
+        }
+         
+        if (carry>0){
+            result->next = new ListNode(carry);
+        }
+         
+        return head->next;
+}
